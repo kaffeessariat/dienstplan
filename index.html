@@ -34,7 +34,7 @@ footer{text-align:center;color:var(--grau);font-size:12px;margin-top:28px}
 // Links aus Mails/WhatsApp (?take=, ?tausch=, ?schicht=) und ?app=dienstplan öffnen direkt den Dienstplan wie bisher
 (function () {
   var q = new URLSearchParams(location.search);
-  if (!(q.get('app') === 'dienstplan' || q.has('take') || q.has('tausch') || q.has('schicht'))) return;
+  if (!(q.get('app') === 'dienstplan' || q.get('app') === 'verwaltung' || q.has('take') || q.has('tausch') || q.has('schicht'))) return;
   document.write('<p class="load">Dienstplan lädt …</p>');
   fetch('https://script.google.com/macros/s/AKfycbwQh0ED6Z2stlAk6wE_K-R3wrc3vaI7cdsTIv6AmURDDnna-ezpk07NN_Gjh8nwJbh8Wg/exec?ui=1')
     .then(function (r) { return r.text(); })
@@ -56,6 +56,7 @@ footer{text-align:center;color:var(--grau);font-size:12px;margin-top:28px}
     <a class="tile" href="hygiene/"><div class="ic">❄️</div><div><b>Kühlungscheck</b><span>Temperaturen und Hygiene-Protokoll</span></div></a>
     <a class="tile" href="verderb/"><div class="ic">🗑️</div><div><b>Verderb</b><span>Verdorbene Ware erfassen, mit Foto</span></div></a>
     <a class="tile" id="fk" href="fahrtkosten/"><div class="ic">🚗</div><div><b>Fahrtkosten</b><span>Fahrten mit dem Privatauto</span></div></a>
+    <a class="tile big" id="vw" href="?app=verwaltung" style="display:none"><div class="ic">🔑</div><div><b>Verwaltung</b><span>Nur Chris und Jana: Plan aufsetzen und bearbeiten, veröffentlichen, Tausche, Eingereicht, Codes</span></div></a>
   </div>
   <footer>Tipp: Seite zum Home-Bildschirm hinzufügen.</footer>
 </main>
@@ -67,6 +68,8 @@ if (!window.__dp) {
   // Fahrtkosten nur für die, die sie nutzen (wer nicht angemeldet ist, sieht alles)
   var FK = ['Chris', 'Jana', 'Hannah', 'Christiane'];
   if (who && FK.indexOf(who) < 0) document.getElementById('fk').style.display = 'none';
+  // Verwaltung nur für Chris und Jana (angemeldet)
+  if (who === 'Chris' || who === 'Jana') document.getElementById('vw').style.display = '';
 }
 </script>
 </body>
