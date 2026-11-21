@@ -34,7 +34,6 @@ footer{text-align:center;color:var(--grau);font-size:12px;margin-top:28px}
 .hm .w small{display:block;color:var(--grau);letter-spacing:0;text-transform:none;font-size:12px}
 .hm .s b{font-weight:normal;color:var(--grau)}
 .hm .s i{font-style:normal;color:var(--grau);font-size:12px}
-.hm .s .lk{color:#a1261f}
 .hm .zu{color:var(--grau)}
 </style>
 </head>
@@ -83,7 +82,7 @@ if (!window.__dp) {
   if (who === 'Chris' || who === 'Jana') document.getElementById('vw').style.display = '';
   // Eigenverbrauch nur für Chris, Jana, Christiane, Hannah (nur angemeldet; der Server prüft zusätzlich den Code)
   if (['Chris', 'Jana', 'Christiane', 'Hannah'].indexOf(who) >= 0) document.getElementById('ev').style.display = '';
-  // Ganz kurz: wer arbeitet heute und morgen (nur angemeldet; Team sieht nur veröffentlichte Tage)
+  // Ganz kurz: wer arbeitet heute und morgen (nur angemeldet)
   (function () {
     var tok = '';
     try { tok = localStorage.getItem('dp_tok') || ''; } catch (e) {}
@@ -95,7 +94,7 @@ if (!window.__dp) {
         var inh = t.zu ? '<span class="zu">' + esc(t.zu) + '</span>' : t.s.map(function (s) {
           return '<div class="s"><b>' + esc(s.l) + ':</b> ' + (s.p.map(function (p) {
             return esc(p.n) + (p.z ? ' <i>' + esc(p.z) + '</i>' : '');
-          }).join(', ') || '–') + (s.offen ? ' <span class="lk">· ' + s.offen + ' offen</span>' : '') + '</div>';
+          }).join(', ') || '–') + '</div>';
         }).join('') || '<span class="zu">–</span>';
         return '<div class="t"><div class="w">' + esc(t.was) + '<small>' + esc(t.tag) + '</small></div><div>' + inh + '</div></div>';
       }).join('');
