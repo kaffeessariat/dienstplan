@@ -66,6 +66,7 @@ footer{text-align:center;color:var(--grau);font-size:12px;margin-top:28px}
     <a class="tile" href="verderb/"><div class="ic">🗑️</div><div><b>Verderb</b><span>Verdorbene Ware erfassen, mit Foto</span></div></a>
     <a class="tile" id="fk" href="fahrtkosten/"><div class="ic">🚗</div><div><b>Fahrtkosten</b><span>Fahrten mit dem Privatauto</span></div></a>
     <a class="tile" id="ev" href="eigenverbrauch/" style="display:none"><div class="ic">🥤</div><div><b>Eigenverbrauch</b><span>Was Chris und Jana selbst verbraucht haben</span></div></a>
+    <a class="tile" id="kt" href="kasse/" style="display:none"><div class="ic">💶</div><div><b>Kasse &amp; Tresor</b><span>Nur Chris und Jana: Bar-Entnahmen und Tresor</span></div></a>
     <a class="tile big" id="vw" href="?app=verwaltung" style="display:none"><div class="ic">🔑</div><div><b>Verwaltung</b><span>Nur Chris und Jana: Plan aufsetzen und bearbeiten, veröffentlichen, Tausche, Eingereicht, Codes</span></div></a>
   </div>
   <footer>Tipp: Seite zum Home-Bildschirm hinzufügen.</footer>
@@ -80,6 +81,8 @@ if (!window.__dp) {
   if (who && FK.indexOf(who) < 0) document.getElementById('fk').style.display = 'none';
   // Verwaltung nur für Chris und Jana (angemeldet)
   if (who === 'Chris' || who === 'Jana') document.getElementById('vw').style.display = '';
+  // Kasse & Tresor nur für Chris und Jana (der Server prüft zusätzlich den Code)
+  if (who === 'Chris' || who === 'Jana') document.getElementById('kt').style.display = '';
   // Eigenverbrauch nur für Chris, Jana, Christiane, Hannah (nur angemeldet; der Server prüft zusätzlich den Code)
   if (['Chris', 'Jana', 'Christiane', 'Hannah'].indexOf(who) >= 0) document.getElementById('ev').style.display = '';
   // Ganz kurz: wer arbeitet heute und morgen (nur angemeldet)
