@@ -76,9 +76,9 @@ if (!window.__dp) {
   var who = '';
   try { who = localStorage.getItem('dp_who') || ''; } catch (e) {}
   if (who) document.getElementById('hallo').textContent = 'Hallo ' + who;
-  // Fahrtkosten nur für die, die sie nutzen (wer nicht angemeldet ist, sieht alles)
   var FK = ['Chris', 'Jana', 'Hannah', 'Christiane'];
-  if (who && FK.indexOf(who) < 0) document.getElementById('fk').style.display = 'none';
+  // Fahrtkosten nur für diese vier und nur angemeldet (der Server prüft zusätzlich den Code)
+  if (FK.indexOf(who) < 0) document.getElementById('fk').style.display = 'none';
   // Verwaltung nur für Chris und Jana (angemeldet)
   if (who === 'Chris' || who === 'Jana') document.getElementById('vw').style.display = '';
   // Kasse & Tresor nur für Chris und Jana (der Server prüft zusätzlich den Code)
